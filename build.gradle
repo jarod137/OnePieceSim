@@ -10,7 +10,6 @@ buildscript {
   }
   dependencies {
     classpath "org.docstr:gwt-gradle-plugin:$gwtPluginVersion"
-
   }
 }
 
@@ -33,6 +32,11 @@ configure(subprojects) {
   compileJava {
     options.incremental = true
   }
+
+  dependencies {
+    implementation 'org.json:json:20240303'
+  }
+
   // From https://lyze.dev/2021/04/29/libGDX-Internal-Assets-List/
   // The article can be helpful when using assets.txt in your project.
   compileJava.doLast {
