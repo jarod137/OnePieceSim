@@ -1,15 +1,15 @@
 package io.github.OPTCGSIM;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -22,7 +22,7 @@ class TitleScreen extends ScreenAdapter {
 
     private Table mainTable;
 
-    public MainMenuScreen(AssetManager assetManager){
+    public TitleScreen(AssetManager assetManager){
         this.assetManager = assetManager;
         skin = assetManager.get(Assets.SKIN);
     }
@@ -37,15 +37,23 @@ class TitleScreen extends ScreenAdapter {
 
         stage.addActor(mainTable);
 
-        addButton("Play");
+        addButton("Play").addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.out.println("play has been clicked");
+            }
+        });
         addButton("Decks");
         addButton("Options");
         addButton("Exit");
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     private TextButton addButton(String name){
             TextButton button = new TextButton(name, skin);
-            mainTable.add(button);
+            mainTable.add(button).fillX().padBottom(10);
+            mainTable.row();
             return button;
     }
 
