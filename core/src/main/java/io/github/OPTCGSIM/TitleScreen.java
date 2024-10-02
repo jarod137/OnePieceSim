@@ -9,17 +9,21 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class TitleScreen implements Screen {
+class TitleScreen extends ScreenAdapter {
+
+    private Stage stage;
+    private Viewport viewport;
 
     @Override
     public void show() {
-        super.show();
+        stage = new Stage();
+        viewport = new ExtendViewport(16, 9);
     }
 
     @Override
     public void render(float delta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'render'");
+       Gdx.gl.glClearColor(.1f, .1f, .15f, 1);
+       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
     @Override
