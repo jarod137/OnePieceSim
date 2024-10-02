@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
+import getpass
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -22,7 +23,8 @@ def isEmpty(item):
     return item.get_text(strip=True)
 
 class Card:
-    def __init__(self, name, cost, power, counter, color, type, effect, set, attribute):
+
+    def __init__(self, name, cost, power, counter, color, type, effect, set, attribute, count):
         self.name = name
         self.cost = cost
         self.power = power
@@ -32,6 +34,7 @@ class Card:
         self.effect = effect
         self.set = set
         self.attribute = attribute
+        self.count = count
 
     def to_dict(self):
         return {
@@ -43,12 +46,14 @@ class Card:
             "type": self.type,
             "effect": self.effect,
             "set": self.set,
-            "attribute": self.attribute
+            "attribute": self.attribute,
+            "cardNo": self.count
         }
 
     def to_string(self):
-        return f"{self.name} \n {self.cost} \n {self.power} \n {self.counter} \n {self.color} \n {self.type} \n {self.effect} \n {self.set} \n {self.attribute}"
+        return f"{self.name} \n {self.cost} \n {self.power} \n {self.counter} \n {self.color} \n {self.type} \n {self.effect} \n {self.set} \n {self.attribute} \n {self.count}"
 
+cardCount = 1
 
 for card in card_elements:
     title_element = card.find("div", class_="cardName")
@@ -70,10 +75,12 @@ for card in card_elements:
         isEmpty(type_element).replace("Type", ""),
         isEmpty(effect_element),
         isEmpty(info_element),
-        isEmpty(attribute_element).replace("Attribute", "")
+        isEmpty(attribute_element).replace("Attribute", ""),
+        cardCount
     )
 
     cards.append(newCard)
+    cardCount = cardCount + 1
 
 
 for card in cards:
@@ -81,7 +88,9 @@ for card in cards:
 
 cards_json = [card.to_dict() for card in cards]
 
-path = os.getcwd() + "/WebScraper/data.json"
 
-with open(path, 'w', encoding='utf-8') as file:
+user = getpass.getuser()
+path = f"/Users/{user}/Documents/personalProjects/OnePieceSim/WebScraper/data.json"
+
+with open(path, 'w+', encoding='utf-8') as file:
     json.dump(cards_json, file, ensure_ascii=False, indent=4)
