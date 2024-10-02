@@ -45,7 +45,13 @@ class TitleScreen extends ScreenAdapter {
         });
         addButton("Decks");
         addButton("Options");
-        addButton("Exit");
+        addButton("Exit").addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.out.println("Quit was clicked");
+                Gdx.app.exit();
+            }
+        });
 
         Gdx.input.setInputProcessor(stage);
     }
