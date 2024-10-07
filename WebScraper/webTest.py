@@ -17,7 +17,7 @@ results = soup.find(class_="resultCol")
 card_elements = results.find_all("dl", class_="modalCol")
 cards = []
 
-card_images = results.find_all("a", class_="modelOpen")
+#card_images = results.find_all("a", class_="modelOpen")
 
 def isEmpty(item):
     if item is None or len(item) == 0:
@@ -67,7 +67,7 @@ for card in card_elements:
     effect_element = card.find("div", class_="text")
     info_element = card.find("div", class_="getInfo")
     attribute_element = card.find("div", class_="attribute")
-    card_img = card.find("img", class_="lazy")
+    #card_img = card.find("img", class_="lazy")
 
     newCard = Card(
         isEmpty(title_element),
