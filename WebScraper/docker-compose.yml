@@ -1,0 +1,10 @@
+
+services:
+  webscraper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    container_name: webscraper
+
