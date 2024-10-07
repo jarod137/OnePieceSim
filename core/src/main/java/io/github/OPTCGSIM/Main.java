@@ -12,6 +12,15 @@ public class Main extends Game {
         assets.gAssetManager().finishLoading();
 
         setScreen(new TitleScreen(assets.gAssetManager()));
+        //setScreen(new GameBoard());
+    }
+
+    public void render() {
+        super.render();
+    } 
+
+    public void dispose() {
+
     }
 }
 

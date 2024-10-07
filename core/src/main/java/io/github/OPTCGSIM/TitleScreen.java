@@ -30,7 +30,7 @@ class TitleScreen extends ScreenAdapter {
     @Override
     public void show() {
         stage = new Stage();
-        viewport = new ExtendViewport(16, 9);
+        viewport = new ExtendViewport(64, 12);
 
         mainTable = new Table();
         mainTable.setFillParent(true);
@@ -40,15 +40,25 @@ class TitleScreen extends ScreenAdapter {
         addButton("Play").addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                System.out.println("play has been clicked");
+                System.out.println("Play has been clicked");
             }
         });
-        addButton("Decks");
-        addButton("Options");
+        addButton("Decks").addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.out.println("Decks has been clicked");
+            }
+        });
+        addButton("Options").addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                System.out.println("Options has been clicked");
+            }
+        });
         addButton("Exit").addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                System.out.println("Quit was clicked");
+                System.out.println("Exit was clicked");
                 Gdx.app.exit();
             }
         });

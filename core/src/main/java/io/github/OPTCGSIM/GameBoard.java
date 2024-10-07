@@ -39,7 +39,7 @@ public class GameBoard implements Screen {
     @Override
     public void render(float delta) {
         // Clear the screen with a dark green background color
-        Gdx.gl.glClearColor(0.0f, 0.5f, 0.0f, 1.0f);
+        Gdx.gl.glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Draw cards
