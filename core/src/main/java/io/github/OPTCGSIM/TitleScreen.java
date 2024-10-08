@@ -59,8 +59,6 @@ class TitleScreen extends ScreenAdapter {
         addButton("Exit").addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                //this is how you would start the server on your end
-                //server = LogPose.startMatch(LogPose.protocol,port,s_hints);
                 System.out.println("Quit was clicked");
                 Gdx.app.exit();
             }

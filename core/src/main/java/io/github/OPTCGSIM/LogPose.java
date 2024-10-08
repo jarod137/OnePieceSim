@@ -17,6 +17,8 @@ public class LogPose {
     //what functions do we need
 
     //start server
+    //this is how you would start the server on your end
+    //server = LogPose.startMatch(LogPose.protocol,port,s_hints);
     public static ServerSocket startMatch(Protocol protocol, int port, ServerSocketHints hints){
         ServerSocket server = Gdx.net.newServerSocket(protocol, port, hints);
         return server;
