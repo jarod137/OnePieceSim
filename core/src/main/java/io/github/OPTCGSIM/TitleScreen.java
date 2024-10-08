@@ -2,6 +2,8 @@ package io.github.OPTCGSIM;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Net.*;
+import com.badlogic.gdx.net.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -21,6 +23,15 @@ class TitleScreen extends ScreenAdapter {
     private Skin skin;
 
     private Table mainTable;
+
+    //we can declare all connection variables locally too
+    Protocol protocol;
+    int port, connect;
+    ServerSocket server;
+    Socket socket;
+    ServerSocketHints s_hints;
+    SocketHints c_hints;
+    String host;
 
     public TitleScreen(AssetManager assetManager){
         this.assetManager = assetManager;
@@ -48,6 +59,8 @@ class TitleScreen extends ScreenAdapter {
         addButton("Exit").addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                //this is how you would start the server on your end
+                //server = LogPose.startMatch(LogPose.protocol,port,s_hints);
                 System.out.println("Quit was clicked");
                 Gdx.app.exit();
             }
