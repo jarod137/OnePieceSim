@@ -12,16 +12,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 class TitleScreen extends ScreenAdapter {
 
     private Stage stage;
-    private Viewport viewport;
     private AssetManager assetManager;
     private Skin skin;
+    private Main game;
 
+<<<<<<< HEAD
     private Table mainTable;
 
     //we can declare all connection variables locally too
@@ -34,61 +34,83 @@ class TitleScreen extends ScreenAdapter {
     String host;
 
     public TitleScreen(AssetManager assetManager){
+=======
+    public TitleScreen(Main game, AssetManager assetManager) {
+        this.game = game;
+>>>>>>> origin/main
         this.assetManager = assetManager;
         skin = assetManager.get(Assets.SKIN);
     }
 
     @Override
     public void show() {
-        stage = new Stage();
-        viewport = new ExtendViewport(16, 9);
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
 
-        mainTable = new Table();
-        mainTable.setFillParent(true);
+        Table table = new Table();
+        table.setFillParent(true);
+        stage.addActor(table);
 
-        stage.addActor(mainTable);
-
-        addButton("Play").addListener(new ClickListener(){
+        // Create the "Play" button
+        TextButton playButton = new TextButton("Play", skin);
+        playButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
-                System.out.println("play has been clicked");
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new GameBoard());  // Directly switch to the GameBoard screen
             }
         });
-        addButton("Decks");
-        addButton("Options");
-        addButton("Exit").addListener(new ClickListener(){
+
+        // Create the "Options" button
+        TextButton optionsButton = new TextButton("Options", skin);
+        optionsButton.addListener(new ClickListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y){
-                System.out.println("Quit was clicked");
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new OptionsMenu(game));  // Go to the options menu
+            }
+        });
+
+        // Create Deck Builder Buttons
+        // TextButton deckBuilderButton = new TextButton("Deck Builder", skin);
+        // deckBuilderButton.addListener(new ClickListener() {
+        //     @Override
+        //     public void clicked(InputEvent event, float x, float y) {
+        //         game.setScreen(new DeckBuilder(game));  // Go to the deck builder
+        //     }
+        // });
+
+        // Create the "Exit" button
+        TextButton exitButton = new TextButton("Exit", skin);
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
         });
 
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    private TextButton addButton(String name){
-            TextButton button = new TextButton(name, skin);
-            mainTable.add(button).fillX().padBottom(10);
-            mainTable.row();
-            return button;
+        // Add buttons to the table
+        table.add(playButton).width(200).height(50).padBottom(20);
+        table.row();
+        table.add(optionsButton).width(200).height(50).padBottom(20);
+        table.row();
+        table.add(exitButton).width(200).height(50);
     }
 
     @Override
     public void render(float delta) {
-       Gdx.gl.glClearColor(.1f, .1f, .15f, 1);
-       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-       stage.act();
-
-       stage.draw();
-
+        stage.act();
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        stage.getViewport().update(width, height, true);
     }
 
-
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
 }
