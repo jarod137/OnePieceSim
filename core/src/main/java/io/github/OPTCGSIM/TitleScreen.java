@@ -21,10 +21,6 @@ class TitleScreen extends ScreenAdapter {
     private Skin skin;
     private Main game;
 
-<<<<<<<<< Temporary merge branch 1
-    public TitleScreen(Main game, AssetManager assetManager) {
-        this.game = game;
-=========
     private Table mainTable;
 
     //we can declare all connection variables locally too
@@ -36,11 +32,8 @@ class TitleScreen extends ScreenAdapter {
     SocketHints c_hints;
     String host;
 
-    public TitleScreen(AssetManager assetManager){
-=======
     public TitleScreen(Main game, AssetManager assetManager) {
         this.game = game;
->>>>>>> origin/main
         this.assetManager = assetManager;
         skin = assetManager.get(Assets.SKIN);
     }
