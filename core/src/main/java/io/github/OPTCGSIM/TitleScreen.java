@@ -21,7 +21,10 @@ class TitleScreen extends ScreenAdapter {
     private Skin skin;
     private Main game;
 
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
+    public TitleScreen(Main game, AssetManager assetManager) {
+        this.game = game;
+=========
     private Table mainTable;
 
     //we can declare all connection variables locally too
