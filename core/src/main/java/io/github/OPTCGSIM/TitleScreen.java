@@ -2,6 +2,8 @@ package io.github.OPTCGSIM;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Net.*;
+import com.badlogic.gdx.net.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -19,6 +21,17 @@ class TitleScreen extends ScreenAdapter {
     private Skin skin;
     private Main game;
 
+    private Table mainTable;
+
+    //we can declare all connection variables locally too
+    Protocol protocol;
+    int port, connect;
+    ServerSocket server;
+    Socket socket;
+    ServerSocketHints s_hints;
+    SocketHints c_hints;
+    String host;
+  
     public TitleScreen(Main game, AssetManager assetManager) {
         this.game = game;
         this.assetManager = assetManager;
