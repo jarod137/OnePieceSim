@@ -24,7 +24,6 @@ public class Main extends Game {
         assets.gAssetManager().dispose();
     }
 
-    // Add this method to return the Assets object
     public Assets getAssets() {
         return assets;
     }

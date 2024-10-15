@@ -125,8 +125,6 @@ public class GameBoard implements Screen {
 
         batch.end();
 
-        // Handle input (drag and drop, clicks, etc.)
-        handleInput();
     }
 
     @Override
@@ -174,10 +172,6 @@ public class GameBoard implements Screen {
         }
     }
 
-    private void handleInput() {
-        // Handle dragging and dropping of cards into zones
-    }
-
     // Basic Card class to represent cards in hand or deck
     class Card {
         Texture texture;
@@ -209,4 +203,5 @@ public class GameBoard implements Screen {
             return null; // Empty deck
         }
     }
+
 }

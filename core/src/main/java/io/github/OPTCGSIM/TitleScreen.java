@@ -53,13 +53,13 @@ class TitleScreen extends ScreenAdapter {
         });
 
         // Create Deck Builder Buttons
-        // TextButton deckBuilderButton = new TextButton("Deck Builder", skin);
-        // deckBuilderButton.addListener(new ClickListener() {
-        //     @Override
-        //     public void clicked(InputEvent event, float x, float y) {
-        //         game.setScreen(new DeckBuilder(game));  // Go to the deck builder
-        //     }
-        // });
+        TextButton deckBuilderButton = new TextButton("Deck Builder", skin);
+        deckBuilderButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new DeckBuilder(game));  // Go to the deck builder
+            }
+        });
 
         // Create the "Exit" button
         TextButton exitButton = new TextButton("Exit", skin);
@@ -72,6 +72,8 @@ class TitleScreen extends ScreenAdapter {
 
         // Add buttons to the table
         table.add(playButton).width(200).height(50).padBottom(20);
+        table.row();
+        table.add(deckBuilderButton).width(200).height(50).padBottom(20);
         table.row();
         table.add(optionsButton).width(200).height(50).padBottom(20);
         table.row();
