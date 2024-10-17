@@ -1,14 +1,18 @@
 package io.github.OPTCGSIM;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
+
+import io.github.OPTCGSIM.screens.TitleScreen;
+import io.github.OPTCGSIM.util.AssetHandler;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
-    private Assets assets;
+    private AssetHandler assets;
 
     @Override
     public void create() {
-        assets = new Assets();
+        assets = new AssetHandler();
         assets.loadAll();
         assets.gAssetManager().finishLoading();
 
@@ -24,7 +28,7 @@ public class Main extends Game {
         assets.gAssetManager().dispose();
     }
 
-    public Assets getAssets() {
+    public AssetHandler getAssets() {
         return assets;
     }
 }

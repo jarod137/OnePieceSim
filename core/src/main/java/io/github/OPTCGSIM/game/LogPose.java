@@ -1,4 +1,4 @@
-package io.github.OPTCGSIM;
+package io.github.OPTCGSIM.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net.*;

@@ -1,8 +1,8 @@
-package io.github.OPTCGSIM;
+package io.github.OPTCGSIM.game;
 
 import com.badlogic.gdx.Game;
 
-public class GameLoop extends Game {
+public class Games extends Game {
 
     @Override
     public void create() {
@@ -11,7 +11,7 @@ public class GameLoop extends Game {
     }
     
 
-    public GameLoop() {
+    public Games() {
         // TODO add an actual game loop lol
         throw new UnsupportedOperationException("Unimplemented method 'GameLoop'");
     }

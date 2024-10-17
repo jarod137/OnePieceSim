@@ -1,4 +1,4 @@
-package io.github.OPTCGSIM;
+package io.github.OPTCGSIM.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -11,6 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import io.github.OPTCGSIM.Main;
+import io.github.OPTCGSIM.util.AssetHandler;
 
 public class DeckBuilder extends ScreenAdapter {
     private Stage stage;
@@ -25,7 +28,7 @@ public class DeckBuilder extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);   
         
         // Ensure that the skin is loaded and assigned
-        skin = assetManager.get(Assets.SKIN);  // Make sure to load the skin
+        skin = assetManager.get(AssetHandler.SKIN);  // Make sure to load the skin
 
         // Setup the UI table layout
         Table table = new Table();
@@ -43,7 +46,10 @@ public class DeckBuilder extends ScreenAdapter {
             }
         });
 
-        table.add(backButton).width(200).height(50);
+        float buttonWidth = Gdx.graphics.getWidth() * 0.2f;
+        float buttonHeight = Gdx.graphics.getWidth() * 0.1f;
+
+        table.add(backButton).width(buttonWidth).height(buttonHeight);
     }
 
     @Override

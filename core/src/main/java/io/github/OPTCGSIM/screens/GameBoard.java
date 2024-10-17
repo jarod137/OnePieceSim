@@ -1,4 +1,4 @@
-package io.github.OPTCGSIM;
+package io.github.OPTCGSIM.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

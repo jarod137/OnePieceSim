@@ -1,4 +1,4 @@
-package io.github.OPTCGSIM;
+package io.github.OPTCGSIM.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -11,6 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import io.github.OPTCGSIM.Main;
+import io.github.OPTCGSIM.util.AssetHandler;
+
 import com.badlogic.gdx.assets.AssetManager;
 
 public class OptionsMenu extends ScreenAdapter {
@@ -31,7 +35,7 @@ public class OptionsMenu extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
 
         // Ensure that the skin is loaded and assigned
-        skin = assetManager.get(Assets.SKIN);  // Make sure to load the skin
+        skin = assetManager.get(AssetHandler.SKIN);  // Make sure to load the skin
 
         // Setup the UI table layout
         Table table = new Table();
@@ -65,14 +69,17 @@ public class OptionsMenu extends ScreenAdapter {
             }
         });
 
+        float buttonWidth = Gdx.graphics.getWidth() * 0.2f;
+        float buttonHeight = Gdx.graphics.getWidth() * 0.1f;
+
         // Add components to the table
         table.add("Resolution:").padBottom(20);
         table.row();
         table.add(resolutionSelectBox).padBottom(20);
         table.row();
-        table.add(applyButton).width(200).height(50).padBottom(20);
+        table.add(applyButton).width(buttonWidth).height(buttonHeight).padBottom(20);
         table.row();
-        table.add(backButton).width(200).height(50);
+        table.add(backButton).width(buttonWidth).height(buttonHeight);
     }
 
     @Override

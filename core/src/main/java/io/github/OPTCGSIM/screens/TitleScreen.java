@@ -1,4 +1,4 @@
-package io.github.OPTCGSIM;
+package io.github.OPTCGSIM.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -14,7 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-class TitleScreen extends ScreenAdapter {
+import io.github.OPTCGSIM.Main;
+import io.github.OPTCGSIM.util.AssetHandler;
+
+public class TitleScreen extends ScreenAdapter {
 
     private Stage stage;
     private AssetManager assetManager;
@@ -35,7 +38,7 @@ class TitleScreen extends ScreenAdapter {
     public TitleScreen(Main game, AssetManager assetManager) {
         this.game = game;
         this.assetManager = assetManager;
-        skin = assetManager.get(Assets.SKIN);
+        skin = assetManager.get(AssetHandler.SKIN);
     }
 
     @Override
@@ -83,14 +86,17 @@ class TitleScreen extends ScreenAdapter {
             }
         });
 
+        float buttonWidth = Gdx.graphics.getWidth() * 0.2f;
+        float buttonHeight = Gdx.graphics.getWidth() * 0.1f;
+
         // Add buttons to the table
-        table.add(playButton).width(200).height(50).padBottom(20);
+        table.add(playButton).width(buttonWidth).height(buttonHeight).padBottom(20);
         table.row();
-        table.add(deckBuilderButton).width(200).height(50).padBottom(20);
+        table.add(deckBuilderButton).width(buttonWidth).height(buttonHeight).padBottom(20);
         table.row();
-        table.add(optionsButton).width(200).height(50).padBottom(20);
+        table.add(optionsButton).width(buttonWidth).height(buttonHeight).padBottom(20);
         table.row();
-        table.add(exitButton).width(200).height(50);
+        table.add(exitButton).width(buttonWidth).height(buttonHeight);
     }
 
     @Override
