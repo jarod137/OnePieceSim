@@ -24,18 +24,22 @@ class TitleScreen extends ScreenAdapter {
     private Table mainTable;
 
     //we can declare all connection variables locally too
-    Protocol protocol;
-    int port, connect;
+    // Protocol protocol;
+    int port = 3000, connect;
     ServerSocket server;
-    Socket socket;
+    Socket socket; //client socket
     ServerSocketHints s_hints;
     SocketHints c_hints;
-    String host;
+    String host = "localhost";
 
     public TitleScreen(Main game, AssetManager assetManager) {
         this.game = game;
         this.assetManager = assetManager;
         skin = assetManager.get(Assets.SKIN);
+        
+        //initial port setup (should be its own function probably)
+        server = LogPose.startServer(port);
+        socket = LogPose.startClient(host, port);
     }
 
     @Override
@@ -65,6 +69,22 @@ class TitleScreen extends ScreenAdapter {
             }
         });
 
+        // Create the PING button
+        TextButton ping = new TextButton("Ping Server", skin);
+        ping.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //shoehorn server ping here
+                try{
+                    if(socket.isConnected()){
+                        LogPose.pingServer();
+                    }
+                }catch(Exception e){
+                    Gdx.app.error("network", "idk", e);
+                }
+            }
+        });
+
         // Create Deck Builder Buttons
         // TextButton deckBuilderButton = new TextButton("Deck Builder", skin);
         // deckBuilderButton.addListener(new ClickListener() {
@@ -87,6 +107,8 @@ class TitleScreen extends ScreenAdapter {
         table.add(playButton).width(200).height(50).padBottom(20);
         table.row();
         table.add(optionsButton).width(200).height(50).padBottom(20);
+        table.row();
+        table.add(ping).width(200).height(50).padBottom(20);
         table.row();
         table.add(exitButton).width(200).height(50);
     }
