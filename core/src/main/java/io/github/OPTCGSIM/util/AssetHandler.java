@@ -1,4 +1,4 @@
-package io.github.OPTCGSIM;
+package io.github.OPTCGSIM.util;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-public class Assets {
+public class AssetHandler {
     private AssetManager assetManager = new AssetManager();
 
     public static final AssetDescriptor<TextureAtlas> TILESET_01 = new AssetDescriptor<>("clean-crispy-ui.atlas", TextureAtlas.class);
