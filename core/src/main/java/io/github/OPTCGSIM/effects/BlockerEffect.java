@@ -1,5 +1,5 @@
 package io.github.OPTCGSIM.effects;
 
-public class BlockerEffect {
+public class BlockerEffect /*  implements Effect */{
     
 }

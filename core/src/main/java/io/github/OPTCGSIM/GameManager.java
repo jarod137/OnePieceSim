@@ -2,8 +2,6 @@ package io.github.OPTCGSIM;
 
 import io.github.OPTCGSIM.player.Player;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import io.github.OPTCGSIM.cards.Deck;
 
@@ -25,12 +23,16 @@ public class GameManager {
 
     private void drawPlayerHand() {
         for (Player player : players) {
-            player.drawCard(/*deck.draw(5)*/);
+            for(int i = 0; i < 5; i++) { // draw starting hand
+                deck.drawCard();
+            }
         }
     }
 
     public void startGame() {
         // main game loop
+        initializeGame();
+        
     }
 
 }

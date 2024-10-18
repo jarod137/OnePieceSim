@@ -1,5 +1,5 @@
 package io.github.OPTCGSIM.effects;
 
-public class DonMinusEffect {
+public class DonMinusEffect /*  implements Effect */{
     
 }

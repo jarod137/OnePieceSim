@@ -1,5 +1,5 @@
 package io.github.OPTCGSIM.effects;
 
-public class EndOfYourTurnEffect {
+public class EndOfYourTurnEffect /*  implements Effect */ {
     
 }

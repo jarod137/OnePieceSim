@@ -14,7 +14,7 @@ public class Deck {
             //add card to the deck based on info
         }
     }
-    Card drawCard() {
+    public Card drawCard() {
         if (cards.size > 0) {
             return cards.pop();
         }

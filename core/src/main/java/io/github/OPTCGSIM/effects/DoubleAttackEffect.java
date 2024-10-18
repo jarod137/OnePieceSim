@@ -1,5 +1,5 @@
 package io.github.OPTCGSIM.effects;
 
-public class DoubleAttackEffect {
+public class DoubleAttackEffect /*  implements Effect */ {
     
 }

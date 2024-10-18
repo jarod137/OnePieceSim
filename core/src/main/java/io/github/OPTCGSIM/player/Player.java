@@ -13,10 +13,6 @@ public class Player {
     private List<CharacterCard> battlefield;
     private List<Card> lifeArea;
 
-    public void drawCard() {
-       
-    }
-
     public void playCard(int cardIndex, Game game) {
 
     }
