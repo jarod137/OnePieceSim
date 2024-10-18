@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.*;
 import java.net.http.WebSocket;
 
 // current socketio version: "io.socket:socket.io-client:2.1.1"
-// import io.socket.client.IO;
+// import io.socket.client.IO; 
 // import io.socket.client.Socket;
 
 //peer 2 peer server functions
