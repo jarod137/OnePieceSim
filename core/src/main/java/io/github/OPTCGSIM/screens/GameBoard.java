@@ -7,28 +7,28 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+// import com.badlogic.gdx.utils.Array;
+// import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameBoard implements Screen {
 
-    private static final int VIRTUAL_WIDTH = 1920;  // Virtual screen width
+    // private static final int VIRTUAL_WIDTH = 1920;  // Virtual screen width
     private static final int VIRTUAL_HEIGHT = 1080; // Virtual screen height
 
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private Texture cardBackTexture;
-    private Array<Card> player1Hand;
-    private Array<Card> player2Hand;
-    private Array<Card> player1Field;
-    private Array<Card> player2Field;
-    private Deck player1Deck;
-    private Deck player2Deck;
+    // private Array<Card> player1Hand;
+    // private Array<Card> player2Hand;
+    // private Array<Card> player1Field;
+    // private Array<Card> player2Field;
+    // private Deck player1Deck;
+    // private Deck player2Deck;
     private Viewport viewport;
 
-    private static final int CARD_WIDTH = 100;
-    private static final int CARD_HEIGHT = 150;
+    // private static final int CARD_WIDTH = 100;
+    // private static final int CARD_HEIGHT = 150;
     private static final int BOARD_PADDING = 50;
 
     // Zone dimensions (these will be scaled based on viewport)
@@ -57,26 +57,27 @@ public class GameBoard implements Screen {
     public void show() {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        cardBackTexture = new Texture("card_back.png"); // Assume a card back texture in assets
-
-        // Use a FitViewport to maintain aspect ratio and scale correctly
-        viewport = new FitViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
-        viewport.apply(); // Apply the viewport
-
-        // Initialize the decks and hands for both players
-        player1Deck = new Deck(cardBackTexture);
-        player2Deck = new Deck(cardBackTexture);
-        player1Hand = new Array<>();
-        player2Hand = new Array<>();
-        player1Field = new Array<>();
-        player2Field = new Array<>();
-
-        // Draw initial hands of 5 cards for both players
-        for (int i = 0; i < 5; i++) {
-            player1Hand.add(player1Deck.drawCard());
-            player2Hand.add(player2Deck.drawCard());
-        }
+        cardBackTexture = new Texture("card_back.png"); 
     }
+
+    //     // Use a FitViewport to maintain aspect ratio and scale correctly
+    //     viewport = new FitViewport(VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+    //     viewport.apply(); // Apply the viewport
+
+    //     // Initialize the decks and hands for both players
+    //     player1Deck = new Deck(cardBackTexture);
+    //     player2Deck = new Deck(cardBackTexture);
+    //     player1Hand = new Array<>();
+    //     player2Hand = new Array<>();
+    //     player1Field = new Array<>();
+    //     player2Field = new Array<>();
+
+    //     // Draw initial hands of 5 cards for both players
+    //     for (int i = 0; i < 5; i++) {
+    //         player1Hand.add(player1Deck.drawCard());
+    //         player2Hand.add(player2Deck.drawCard());
+    //     }
+    // }
 
     @Override
     public void render(float delta) {
@@ -117,11 +118,11 @@ public class GameBoard implements Screen {
         // Draw cards in the middle of their respective zones
         batch.begin();
 
-        // Draw Player 1's hand in the hand zone
-        drawPlayerHand(player1Hand, player1HandZone);
+        // // Draw Player 1's hand in the hand zone
+        // drawPlayerHand(player1Hand, player1HandZone);
 
-        // Draw Player 2's hand in the hand zone
-        drawPlayerHand(player2Hand, player2HandZone);
+        // // Draw Player 2's hand in the hand zone
+        // drawPlayerHand(player2Hand, player2HandZone);
 
         batch.end();
 
@@ -157,51 +158,21 @@ public class GameBoard implements Screen {
         shapeRenderer.rect(zonePosition.x+400, zonePosition.y, zoneWidth, zoneHeight);
     }
 
-    // Function to draw cards in the middle of the hand zone
-    private void drawPlayerHand(Array<Card> hand, Vector2 handZone) {
-        int handSize = hand.size;
-        float cardSpacing = 10;  // Space between cards
+    // // Function to draw cards in the middle of the hand zone
+    // private void drawPlayerHand(Array<Card> hand, Vector2 handZone) {
+    //     int handSize = hand.size;
+    //     float cardSpacing = 10;  // Space between cards
 
-        // Calculate starting x position to center cards
-        float totalHandWidth = handSize * CARD_WIDTH + (handSize - 1) * cardSpacing;
-        float startX = handZone.x + (zoneWidth / 2 - totalHandWidth / 2) + 800;
+    //     // Calculate starting x position to center cards
+    //     float totalHandWidth = handSize * CARD_WIDTH + (handSize - 1) * cardSpacing;
+    //     float startX = handZone.x + (zoneWidth / 2 - totalHandWidth / 2) + 800;
 
-        for (int i = 0; i < handSize; i++) {
-            Card card = hand.get(i);
-            batch.draw(card.texture, startX + i * (CARD_WIDTH + cardSpacing), handZone.y + (zoneHeight / 2 - CARD_HEIGHT / 2), CARD_WIDTH, CARD_HEIGHT);
-        }
-    }
+    //     for (int i = 0; i < handSize; i++) {
+    //         Card card = hand.get(i);
+    //         batch.draw(card.texture, startX + i * (CARD_WIDTH + cardSpacing), handZone.y + (zoneHeight / 2 - CARD_HEIGHT / 2), CARD_WIDTH, CARD_HEIGHT);
+    //     }
+    // }
 
-    // Basic Card class to represent cards in hand or deck
-    class Card {
-        Texture texture;
 
-        Card(Texture texture) {
-            this.texture = texture;
-        }
-
-        void dispose() {
-            texture.dispose();
-        }
-    }
-
-    // Basic Deck class to manage cards
-    class Deck {
-        private Array<Card> cards;
-
-        Deck(Texture cardBackTexture) {
-            cards = new Array<>();
-            for (int i = 0; i < 50; i++) { // Assume a deck of 50 cards
-                cards.add(new Card(cardBackTexture));
-            }
-        }
-
-        Card drawCard() {
-            if (cards.size > 0) {
-                return cards.pop();
-            }
-            return null; // Empty deck
-        }
-    }
 
 }
