@@ -16,9 +16,9 @@ public class CharacterCard extends Card {
     private String cardNumber;
 
 
+
     public CharacterCard(Texture texture, String name, int cost, int power, String attribute, String color, int counter, String effects, String triggerEffect, String type, String cardNumber) {
-        this.texture = texture;
-        this.name = name;
+        super(texture, name);
         this.cost = cost;
         this.power = power;
         this.attribute = attribute;
@@ -32,21 +32,10 @@ public class CharacterCard extends Card {
     }
 
     @Override 
-    public void play(GameState gameState, Player player){
-        if(player.getActiveDon() /*unimplemented*/ >= cost) {
-            player.restDon(cost); // unimplemented
-            activateEffect(gameState);
-        }
+    public void play(Player player){
+        // if(player.getActiveDon() /*unimplemented*/ >= cost) {
+        //     player.restDon(cost); // unimplemented
+        // }
     }
 
-    @Override 
-    public void onPlayEffect(GameState gameState) {
-        // implement on play effects
-    }
-
-    @Override
-    public void play(Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
-    }
 }

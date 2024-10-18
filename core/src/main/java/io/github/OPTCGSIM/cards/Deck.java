@@ -11,7 +11,7 @@ public class Deck {
         Texture cardBackTexture = new Texture("card_back.png"); 
         cards = new Array<>();
         for (int i = 0; i < 50; i++) { // Assume a deck of 50 cards
-            cards.add(new Card(cardBackTexture, "Ace", 5));
+            //add card to the deck based on info
         }
     }
     Card drawCard() {

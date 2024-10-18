@@ -1,5 +1,7 @@
 package io.github.OPTCGSIM.game;
 
+import java.util.List;
+
 import io.github.OPTCGSIM.player.Player;
 
 public class TurnManager {

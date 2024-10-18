@@ -14,18 +14,18 @@ public class GameManager {
 
     public GameManager(List<Player> playerList) {
         this.players = playerList;
-        this.deck = new Deck();
+        this.deck = new Deck(null);
         initializeGame();
     }
 
     public void initializeGame(){
-        deck.shuffle();
+      //  deck.shuffle();
         drawPlayerHand();
     }
 
     private void drawPlayerHand() {
         for (Player player : players) {
-            player.drawCard(deck.draw(5));
+            player.drawCard(/*deck.draw(5)*/);
         }
     }
 
@@ -33,5 +33,4 @@ public class GameManager {
         // main game loop
     }
 
-    // arrow circle arrow
 }

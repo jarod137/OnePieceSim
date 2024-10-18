@@ -1,5 +1,10 @@
 package io.github.OPTCGSIM.effects;
 
-public class ActivateMainEffect {
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class ActivateMainEffect /*  implements Effect */ {
+    // @Override
+    // public void activateMain(CharacterCard card) {
+        
+    // }
 }
