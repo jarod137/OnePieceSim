@@ -20,4 +20,8 @@ public class Deck {
         }
         return null; // Empty deck
     }
+
+    public void shuffle() {
+        // for David
+    }
 }

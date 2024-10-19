@@ -38,4 +38,7 @@ public class CharacterCard extends Card {
         // }
     }
 
+    void dispose() {
+        texture.dispose();
+    }
 }
