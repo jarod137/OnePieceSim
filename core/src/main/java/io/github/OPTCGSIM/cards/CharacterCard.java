@@ -16,7 +16,6 @@ public class CharacterCard extends Card {
     private String cardNumber;
 
 
-
     public CharacterCard(Texture texture, String name, int cost, int power, String attribute, String color, int counter, String effects, String triggerEffect, String type, String cardNumber) {
         super(texture, name);
         this.cost = cost;
@@ -28,10 +27,10 @@ public class CharacterCard extends Card {
         this.triggerEffect = triggerEffect;
         this.type = type;
         this.cardNumber = cardNumber;
-        
+
     }
 
-    @Override 
+    @Override
     public void play(Player player){
         // if(player.getActiveDon() /*unimplemented*/ >= cost) {
         //     player.restDon(cost); // unimplemented

@@ -1,18 +1,21 @@
-import requests
-from bs4 import BeautifulSoup
 import json
 import os
-from PIL import Image
-from concurrent.futures import ThreadPoolExecutor
 import time
+from concurrent.futures import ThreadPoolExecutor
 
+import requests
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+
+"""
+Author: Alex Rivera
+Notes: This could be improved on massively, but will revisit to improve later.
+"""
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -20,8 +23,15 @@ headers = {
 
 URL = "https://en.onepiece-cardgame.com/cardlist/"
 
-driver = webdriver.Chrome()
+driver_options = webdriver.ChromeOptions()
+driver_options.add_argument("--headless")
+driver_options.add_argument("--no-sandbox")
+driver_options.add_argument("--disable-dev-shm-usage")
+
+driver = webdriver.Chrome(options=driver_options)
 driver.set_page_load_timeout(20)
+
+start_time = time.time()
 
 try:
     print(f"Getting {URL}")
@@ -58,6 +68,26 @@ def isEmpty(item):
         return "N/A"
     return item.get_text(strip=True)
 
+def extract_card_type(info_element):
+    if info_element is None:
+        return ""
+
+    # Extract all the text from individual <span> elements
+    spans = info_element.find_all("span")
+
+    if len(spans) < 3:
+        return ""
+
+    # Extract the third <span> (card type) and process it
+    card_type = spans[2].get_text(strip=True).upper()
+    print(card_type)
+
+    # Check if the card type is one of the valid types
+    if card_type in ["CHARACTER", "LEADER", "STAGE", "EVENT"]:
+        return card_type
+
+    return ""
+
 def download_image(image_info):
     image_index, full_img_url = image_info
     img_data = requests.get(full_img_url).content
@@ -70,7 +100,7 @@ def download_image(image_info):
 
 class Card:
 
-    def __init__(self, name, cost, power, counter, color, type, effect, set, attribute, count, img):
+    def __init__(self, name, cost, power, counter, color, type, effect, set, attribute, count, img, card):
         self.name = name
         self.cost = cost
         self.power = power
@@ -82,6 +112,7 @@ class Card:
         self.attribute = attribute
         self.count = count
         self.img = img
+        self.card = card
 
     def to_dict(self):
         return {
@@ -95,7 +126,8 @@ class Card:
             "set": self.set,
             "attribute": self.attribute,
             "cardNo": self.count,
-            "imgPath": self.img
+            "imgPath": self.img,
+            "info": self.card
         }
 
 cardCount = 1
@@ -134,6 +166,7 @@ for i in range(2, len(options) - 2):
         effect_element = card.find("div", class_="text")
         info_element = card.find("div", class_="getInfo")
         attribute_element = card.find("div", class_="attribute")
+        card_element = card.find("div", class_="infoCol")
 
         newCard = Card(
             isEmpty(title_element),
@@ -146,7 +179,8 @@ for i in range(2, len(options) - 2):
             isEmpty(info_element),
             isEmpty(attribute_element).replace("Attribute", ""),
             cardCount,
-            "OnePieceSim/assets/" + str(cardCount) + ".jpg"
+            "OnePieceSim/assets/" + str(cardCount) + ".jpg",
+            extract_card_type(card_element)
         )
 
         cards.append(newCard)
@@ -198,9 +232,13 @@ os.chdir("../assets/cards/")
 print(f"Amount of cards: {len(cards)}")
 print(f"Amount of card images: {len(img_urls)}")
 
-with ThreadPoolExecutor() as executor:
+num_workers = os.cpu_count() * 2
+print(f"Num of CPU: {num_workers}")
+with ThreadPoolExecutor(max_workers=num_workers) as executor:
     executor.map(download_image, img_urls)
 
+end_time = time.time()
 print("Scraping complete.")
+print(f"Completed in: {end_time - start_time}")
 time.sleep(10)
 driver.quit()

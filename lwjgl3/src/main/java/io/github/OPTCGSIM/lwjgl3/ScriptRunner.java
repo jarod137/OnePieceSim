@@ -32,27 +32,6 @@ public class ScriptRunner {
             e.printStackTrace();
         }
     }
-    public static ArrayList<Card> parseJSON() {
-        ArrayList<Card> cardDeck = new ArrayList<>();
-
-        try {
-            String content = new String(Files.readAllBytes(Paths.get("WebScraper/data.json")));
-            JSONArray jsonArr = new JSONArray(content);
-
-            for (int i = 0; i < jsonArr.length(); i++){
-                JSONObject jsonObject = jsonArr.getJSONObject(i);
-                String title = jsonObject.getString("name");
-
-                Card newCard = new Card(title);
-                cardDeck.add(newCard);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return cardDeck;
-    }
 
     public static void printDeck(ArrayList<Card> deck) {
         if (deck == null) {
@@ -67,9 +46,5 @@ public class ScriptRunner {
     public static void main(String[] args) {
         //Uncomment to run
         //startScript();
-
-        ArrayList<Card> deck = parseJSON();
-        printDeck(deck);
-
     }
 }
