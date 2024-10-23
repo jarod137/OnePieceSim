@@ -2,11 +2,23 @@ package io.github.OPTCGSIM.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import io.github.OPTCGSIM.Main;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
     public static void main(String[] args) {
+//        String inputDir = "assets/cards";
+//        String outputDir = "assets/atlas";
+//        String atlasName = "imageAtlas";
+//
+//        TexturePacker.Settings settings = new TexturePacker.Settings();
+//        settings.maxWidth = 2048;
+//        settings.maxHeight = 2048;
+//
+//        TexturePacker.process(settings, inputDir, outputDir, atlasName);
+//
+//        System.out.println("Texture Atlas generated successfully!");
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
         createApplication();
     }

@@ -179,7 +179,7 @@ for i in range(2, len(options) - 2):
             isEmpty(info_element),
             isEmpty(attribute_element).replace("Attribute", ""),
             cardCount,
-            "OnePieceSim/assets/" + str(cardCount) + ".jpg",
+            "assets/" + str(cardCount) + ".jpg",
             extract_card_type(card_element)
         )
 
@@ -234,8 +234,8 @@ print(f"Amount of card images: {len(img_urls)}")
 
 num_workers = os.cpu_count() * 2
 print(f"Num of CPU: {num_workers}")
-with ThreadPoolExecutor(max_workers=num_workers) as executor:
-    executor.map(download_image, img_urls)
+# with ThreadPoolExecutor(max_workers=num_workers) as executor:
+#     executor.map(download_image, img_urls)
 
 end_time = time.time()
 print("Scraping complete.")

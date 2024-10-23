@@ -1,7 +1,7 @@
 package io.github.OPTCGSIM.cards;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.Array;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,18 +11,23 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class CardParse {
+    private AssetManager assetManager;
+
+    public CardParse(AssetManager assetManager) {
+        this.assetManager = assetManager;
+    }
 
     //TODO: Should probably move the assigment of images over here, rather than in DeckBuilder.java
     public ArrayList<Card> parseJSON() {
         ArrayList<Card> cards = new ArrayList<>();
-        Texture cardBackTexture = new Texture("card_back.png");
+        Texture cardTexture = null;
 
         try {
             String content = new String(Files.readAllBytes(Paths.get("WebScraper/data.json")));
             JSONArray jsonArr = new JSONArray(content);
 
 
-            for (int i = 0; i < jsonArr.length(); i++) {
+            for (int i = 1; i < jsonArr.length(); i++) {
                 JSONObject jsonObject = jsonArr.getJSONObject(i);
                 String name = jsonObject.getString("name");
                 String cost = jsonObject.getString("cost");
@@ -53,21 +58,24 @@ public class CardParse {
                     newCounter = Integer.parseInt(counter.replaceAll("[\\D]", ""));
                 }
 
+                String texturePath = "cards/" + i + ".jpg";
+                cardTexture = new Texture(texturePath);
+
                 switch (cardType) {
                     case "CHARACTER":
-                        CharacterCard characterCard = new CharacterCard(cardBackTexture, name, cardNo, cardType, newCost, newPower, newCounter, color, type, effect, set, attribute);
+                        CharacterCard characterCard = new CharacterCard(cardTexture, name, cardNo, cardType, newCost, newPower, newCounter, color, type, effect, set, attribute);
                         cards.add(characterCard);
                         break;
                     case "LEADER":
-                        LeaderCard leaderCard = new LeaderCard(cardBackTexture, name, cardNo, cardType, newCost, newPower, color, type, effect, set, attribute);
+                        LeaderCard leaderCard = new LeaderCard(cardTexture, name, cardNo, cardType, newCost, newPower, color, type, effect, set, attribute);
                         cards. add(leaderCard);
                         break;
                     case "EVENT":
-                        EventCard eventCard = new EventCard(cardBackTexture, name, cardNo, cardType, newCost, color, type, effect, set);
+                        EventCard eventCard = new EventCard(cardTexture, name, cardNo, cardType, newCost, color, type, effect, set);
                         cards.add(eventCard);
                         break;
                     case "STAGE":
-                        StageCard stageCard = new StageCard(cardBackTexture, name, cardNo, cardType, newCost, color, type, effect, set);
+                        StageCard stageCard = new StageCard(cardTexture, name, cardNo, cardType, newCost, color, type, effect, set);
                         cards.add(stageCard);
                         break;
                     default:
@@ -85,6 +93,7 @@ public class CardParse {
 
         return cards;
     }
+
 
     //Filters out the character and leader cards from the deck
     public ArrayList<Card> filterCards(ArrayList<Card> cards) {
