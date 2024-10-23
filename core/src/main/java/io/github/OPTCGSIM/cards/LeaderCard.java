@@ -7,25 +7,21 @@ import io.github.OPTCGSIM.player.Player;
 public class LeaderCard extends Card {
 
     private int power;
-    private String attribute;
-    private String effects;
-    private String color;
-    private String cardCategory;
     private int life;
+    private String attribute;
+    private String effect;
+    private String color;
     private String type;
-    private String cardNumber;
-
-    public LeaderCard(Texture texture, String name, int power, String attribute, String effects, String color, String cardCategory, int life, String type, String cardNumber) {
-        super(texture, name);
-        this.power = power;
-        this.attribute = attribute;
-        this.effects = effects;
-        this.color = color;
-        this.cardCategory = cardCategory;
+    private String set;
+    public LeaderCard(Texture texture, String name, int cardNumber, String cardType, int life, int power, String color, String type, String effect, String set, String attribute) {
+        super(texture, name, cardNumber, cardType);
         this.life = life;
+        this.power = power;
+        this.color = color;
         this.type = type;
-        this.cardNumber = cardNumber;
-        
+        this.effect = effect;
+        this.set = set;
+        this.attribute = attribute;
     }
 
     @Override
@@ -33,7 +29,7 @@ public class LeaderCard extends Card {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'play'");
     }
-    
+
     void dispose() {
         texture.dispose();
     }

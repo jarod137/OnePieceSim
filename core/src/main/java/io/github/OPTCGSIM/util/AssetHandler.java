@@ -12,11 +12,10 @@ public class AssetHandler {
     public static final AssetDescriptor<TextureAtlas> TILESET_01 = new AssetDescriptor<>("clean-crispy-ui.atlas", TextureAtlas.class);
     public static final AssetDescriptor<Skin> SKIN = new AssetDescriptor<>("clean-crispy-ui.json", Skin.class, new SkinLoader.SkinParameter("clean-crispy-ui.atlas"));
 
-    public void loadAll() { 
+    public void loadAll() {
         assetManager.load(TILESET_01);
-        assetManager.load(SKIN); 
+        assetManager.load(SKIN);
     }
-
 
     public AssetManager gAssetManager()
     {

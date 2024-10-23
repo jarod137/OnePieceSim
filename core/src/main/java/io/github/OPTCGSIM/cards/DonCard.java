@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import io.github.OPTCGSIM.player.Player;
 
 public class DonCard extends Card{
-    public DonCard(Texture texture, String name) {
-        super(texture, name);
+    public DonCard(Texture texture, String name, int cardNumber, String cardType) {
+        super(texture, name, cardNumber, cardType);
     }
 
     @Override

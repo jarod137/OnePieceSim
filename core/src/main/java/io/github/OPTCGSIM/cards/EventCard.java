@@ -7,23 +7,17 @@ import io.github.OPTCGSIM.player.Player;
 public class EventCard extends Card {
 
     private int cost;
-    private String effects;
-    private String triggerEffect;
+    private String effect;
     private String color;
-    private String cardCategory;
-    private String cardNumber;
     private String type;
-
-    public EventCard(Texture texture, String name, int cost, String effects,String type, String triggerEffect, String color, String cardCategory, String cardNumber) {
-        super(texture, name);
+    private String set;
+    public EventCard(Texture texture, String name, int cardNumber, String cardType, int cost, String color, String type, String effect, String set) {
+        super(texture, name, cardNumber, cardType);
         this.cost = cost;
-        this.effects = effects;
-        this.triggerEffect = triggerEffect;
         this.color = color;
-        this.cardCategory = cardCategory;
-        this.cardNumber = cardNumber;
         this.type = type;
-        
+        this.effect = effect;
+        this.set = set;
     }
 
     @Override
@@ -31,7 +25,7 @@ public class EventCard extends Card {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'play'");
     }
-  
+
     void dispose() {
         texture.dispose();
     }
