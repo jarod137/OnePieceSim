@@ -7,11 +7,16 @@ import com.badlogic.gdx.Net.*;
 import com.badlogic.gdx.net.*;
 import com.badlogic.gdx.utils.*;
 
-
+import java.net.URI;
+import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+import java.net.http.WebSocket.*;
+import java.time.Duration;
+import java.util.concurrent.*;
+import java.util.*;
 
 // current socketio version: "io.socket:socket.io-client:2.1.1"
-// import io.socket.client.IO; 
+// import io.socket.client.IO;
 // import io.socket.client.Socket;
 
 //peer 2 peer server functions
@@ -27,7 +32,32 @@ public class LogPose{
     //json object to send back and forth?
     public static Json turnJSON = new Json();
 
-    // Socket socket = IO.socket();
+    //stinky stinky listener
+    //we may need to make more of these as they're needed idk
+
+    //Oracle: Here is an example of a listener that requests invocations, one at a time, 
+    //until a complete message has been accumulated, then processes the result, 
+    //and completes the CompletionStage: 
+    WebSocket.Listener listener = new WebSocket.Listener() {
+
+        // List<CharSequence> parts = new ArrayList<>();
+        // CompletableFuture<?> accumulatedMessage = new CompletableFuture<>();
+
+        // public CompletionStage<?> onText(WebSocket webSocket, CharSequence message, boolean last) {
+        //     parts.add(message);
+        //     webSocket.request(1);
+        //     if (last) {
+        //         // processWholeText(parts);
+        //         parts = new ArrayList<>();
+        //         accumulatedMessage.complete(null);
+        //         CompletionStage<?> cf = accumulatedMessage;
+        //         accumulatedMessage = new CompletableFuture<>();
+        //         return cf;
+        //     }
+        //     return accumulatedMessage;
+        // }//ontext
+    };
+
     //what functions do we need
 
     // WebSocket socket = WebSockets.newSocket(WebSockets.toWebSocketUrl(address, port));
@@ -35,6 +65,13 @@ public class LogPose{
     // socket.addListener(new WebsocketListener() { ... });
     // socket.connect();
 
+    //start client websocket
+    public CompletableFuture<WebSocket> startClientW (String host){
+        HttpClient client = HttpClient.newHttpClient();
+        CompletableFuture<WebSocket> ws = client.newWebSocketBuilder()
+        .buildAsync(URI.create("ws://"+host), listener); 
+        return ws;
+    }
     //start server
     //protocol and socket hints are preset
     //this is how you would start the server on your end
