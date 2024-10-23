@@ -29,6 +29,10 @@ public class GameManager {
         }
     }
 
+    public void gameOver() {
+        
+    }
+
     public void startGame() {
         // main game loop
         initializeGame();
