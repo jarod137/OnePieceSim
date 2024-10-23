@@ -1,6 +1,7 @@
 
 services:
   webscraper:
+    platform: linux/x86_64
     build:
       context: .
       dockerfile: Dockerfile

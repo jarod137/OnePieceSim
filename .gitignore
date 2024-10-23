@@ -152,7 +152,7 @@ Thumbs.db
 *~
 *.*#
 *#*#
-/assets/assets.txt
+/assets
 
 ## Special cases:
 
@@ -162,4 +162,3 @@ Thumbs.db
 ## You should delete or comment out the next line if you have configuration in a different resource-config.json .
 **/resource-config.json
 /WebScraper/data.json
-/assets/cards/*

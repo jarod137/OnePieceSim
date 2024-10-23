@@ -24,6 +24,9 @@ public class Deck {
     public void deckEmpty() {
 
     }
+  
+       public void shuffle() {
+        // for David
+    }
 }
 
-// sample comment to commit cards

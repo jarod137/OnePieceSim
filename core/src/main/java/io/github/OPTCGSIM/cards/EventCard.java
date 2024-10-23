@@ -31,5 +31,8 @@ public class EventCard extends Card {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'play'");
     }
-    
+  
+    void dispose() {
+        texture.dispose();
+    }
 }

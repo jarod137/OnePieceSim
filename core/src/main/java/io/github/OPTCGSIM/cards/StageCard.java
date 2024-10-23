@@ -29,4 +29,7 @@ public class StageCard extends Card {
         throw new UnsupportedOperationException("Unimplemented method 'play'");
     }
     
+    void dispose() {
+        texture.dispose();
+    }
 }
