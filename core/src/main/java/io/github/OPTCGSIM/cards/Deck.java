@@ -18,10 +18,15 @@ public class Deck {
         if (cards.size > 0) {
             return cards.pop();
         }
-        return null; // Empty deck
+        else {deckEmpty(); return null;}
     }
 
-    public void shuffle() {
+    public void deckEmpty() {
+
+    }
+  
+       public void shuffle() {
         // for David
     }
 }
+
