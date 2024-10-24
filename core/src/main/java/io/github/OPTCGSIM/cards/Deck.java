@@ -1,32 +1,52 @@
 package io.github.OPTCGSIM.cards;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.Array;
-import io.github.OPTCGSIM.cards.Card;
+import java.util.ArrayList;
+import java.util.Objects;
 
-// Basic Deck class to manage cards
 public class Deck {
-    private Array<Card> cards;
-    public Deck(String string) {
-        Texture cardBackTexture = new Texture("card_back.png"); 
-        cards = new Array<>();
-        for (int i = 0; i < 50; i++) { // Assume a deck of 50 cards
-            //add card to the deck based on info
-        }
-    }
-    public Card drawCard() {
-        if (cards.size > 0) {
-            return cards.pop();
-        }
-        else {deckEmpty(); return null;}
+
+    private LeaderCard leader;
+    private ArrayList<Card> deck;
+
+
+    public Deck(){
+        this.leader = null;
+        this.deck = new ArrayList<>();
     }
 
-    public void deckEmpty() {
-
+    public void setLeader(LeaderCard leader){
+        this.leader = leader;
     }
-  
-       public void shuffle() {
-        // for David
+
+    public LeaderCard getLeader(){
+        return this.leader;
+    }
+
+    public ArrayList<Card> getDeck(){
+        return this.deck;
+    }
+
+    public boolean hasLeader(){
+        if (this.leader == null){
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean rightColor(Card card){
+        if (this.leader == null){
+            return true;
+        }
+
+        if (Objects.equals(this.leader.getColor(), card.getColor())){
+            return true;
+        }
+
+        return false;
+    }
+
+    public void addToHand(Card card){
+        this.deck.add(card);
     }
 }
-

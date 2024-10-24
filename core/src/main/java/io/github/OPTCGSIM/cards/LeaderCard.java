@@ -10,14 +10,12 @@ public class LeaderCard extends Card {
     private int life;
     private String attribute;
     private String effect;
-    private String color;
     private String type;
     private String set;
-    public LeaderCard(Texture texture, String name, int cardNumber, String cardType, int life, int power, String color, String type, String effect, String set, String attribute) {
-        super(texture, name, cardNumber, cardType);
+    public LeaderCard(Texture texture, String name, int cardNumber, String cardType, String color, int life, int power,  String type, String effect, String set, String attribute) {
+        super(texture, name, cardNumber, cardType, color);
         this.life = life;
         this.power = power;
-        this.color = color;
         this.type = type;
         this.effect = effect;
         this.set = set;

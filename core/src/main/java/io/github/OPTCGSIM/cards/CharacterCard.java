@@ -8,18 +8,15 @@ public class CharacterCard extends Card {
     private int power;
     private int counter;
     private String attribute;
-    private String color;
     private String effect;
     private String set;
     private String type;
-    private String cardType;
 
-    public CharacterCard(Texture texture, String name, int cardNumber, String cardType, int cost, int power, int counter, String color, String type, String effect, String set, String attribute) {
-        super(texture, name, cardNumber, cardType);
+    public CharacterCard(Texture texture, String name, int cardNumber, String cardType, String color, int cost, int power, int counter, String type, String effect, String set, String attribute) {
+        super(texture, name, cardNumber, cardType, color);
         this.cost = cost;
         this.power = power;
         this.counter = counter;
-        this.color = color;
         this.type = type;
         this.effect = effect;
         this.set = set;

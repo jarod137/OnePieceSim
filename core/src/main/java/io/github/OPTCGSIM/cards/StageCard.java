@@ -1,22 +1,18 @@
 package io.github.OPTCGSIM.cards;
 
 import com.badlogic.gdx.graphics.Texture;
-
 import io.github.OPTCGSIM.player.Player;
-import org.w3c.dom.Text;
 
 public class StageCard extends Card {
 
     private int cost;
     private String effect;
-    private String color;
     private String type;
     private String set;
 
-    public StageCard(Texture texture, String name, int cardNumber, String cardType, int cost, String color, String type, String effect, String set) {
-        super(texture, name, cardNumber, cardType);
+    public StageCard(Texture texture, String name, int cardNumber, String cardType, String color, int cost, String type, String effect, String set) {
+        super(texture, name, cardNumber, cardType, color);
         this.cost = cost;
-        this.color = color;
         this.type = type;
         this.effect = effect;
         this.set = set;

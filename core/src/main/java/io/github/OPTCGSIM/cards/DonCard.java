@@ -6,7 +6,7 @@ import io.github.OPTCGSIM.player.Player;
 
 public class DonCard extends Card{
     public DonCard(Texture texture, String name, int cardNumber, String cardType) {
-        super(texture, name, cardNumber, cardType);
+        super(texture, name, cardNumber, cardType, null);
     }
 
     @Override

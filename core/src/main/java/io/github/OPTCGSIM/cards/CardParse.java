@@ -63,19 +63,19 @@ public class CardParse {
 
                 switch (cardType) {
                     case "CHARACTER":
-                        CharacterCard characterCard = new CharacterCard(cardTexture, name, cardNo, cardType, newCost, newPower, newCounter, color, type, effect, set, attribute);
+                        CharacterCard characterCard = new CharacterCard(cardTexture, name, cardNo, cardType, color, newCost, newPower, newCounter, type, effect, set, attribute);
                         cards.add(characterCard);
                         break;
                     case "LEADER":
-                        LeaderCard leaderCard = new LeaderCard(cardTexture, name, cardNo, cardType, newCost, newPower, color, type, effect, set, attribute);
+                        LeaderCard leaderCard = new LeaderCard(cardTexture, name, cardNo, cardType, color, newCost, newPower,  type, effect, set, attribute);
                         cards. add(leaderCard);
                         break;
                     case "EVENT":
-                        EventCard eventCard = new EventCard(cardTexture, name, cardNo, cardType, newCost, color, type, effect, set);
+                        EventCard eventCard = new EventCard(cardTexture, name, cardNo, cardType, color, newCost, type, effect, set);
                         cards.add(eventCard);
                         break;
                     case "STAGE":
-                        StageCard stageCard = new StageCard(cardTexture, name, cardNo, cardType, newCost, color, type, effect, set);
+                        StageCard stageCard = new StageCard(cardTexture, name, cardNo, cardType, color, newCost, type, effect, set);
                         cards.add(stageCard);
                         break;
                     default:
@@ -95,12 +95,12 @@ public class CardParse {
     }
 
 
-    //Filters out the character and leader cards from the deck
-    public ArrayList<Card> filterCards(ArrayList<Card> cards) {
+    //Filters out the given cards depending on the filter specified
+    public ArrayList<Card> filterCards(ArrayList<Card> cards, String filter) {
         ArrayList<Card> updatedCards = new ArrayList<>();
 
         for (Card card: cards) {
-            if (card.getCardType().equalsIgnoreCase("CHARACTER") || card.getCardType().equalsIgnoreCase("LEADER")) {
+            if (card.getCardType().equalsIgnoreCase(filter)) {
                 updatedCards.add(card);
             }
         }

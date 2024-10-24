@@ -15,7 +15,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import io.github.OPTCGSIM.Main;
+import io.github.OPTCGSIM.cards.Card;
+import io.github.OPTCGSIM.cards.CardParse;
 import io.github.OPTCGSIM.util.AssetHandler;
+
+import java.util.ArrayList;
 
 public class TitleScreen extends ScreenAdapter {
 
@@ -34,7 +38,7 @@ public class TitleScreen extends ScreenAdapter {
     ServerSocketHints s_hints;
     SocketHints c_hints;
     String host;
-  
+
     public TitleScreen(Main game, AssetManager assetManager) {
         this.game = game;
         this.assetManager = assetManager;
@@ -49,6 +53,10 @@ public class TitleScreen extends ScreenAdapter {
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
+
+        CardParse parse = new CardParse(assetManager);
+        ArrayList<Card> cards = new ArrayList<>();
+        cards = parse.parseJSON();
 
         // Create the "Play" button
         TextButton playButton = new TextButton("Play", skin);
