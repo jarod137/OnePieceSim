@@ -1,6 +1,6 @@
 package io.github.OPTCGSIM;
 
-//Main networking component of the sim. All networking variables and methods are found here
+//gdx net receivder implementation
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net.*;
