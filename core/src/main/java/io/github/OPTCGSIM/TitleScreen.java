@@ -11,30 +11,32 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-class TitleScreen extends ScreenAdapter {
+public class TitleScreen extends ScreenAdapter {
 
     private Stage stage;
     private AssetManager assetManager;
     private Skin skin;
+    private Viewport viewport;
     private Image backgroundImage;
-
     private Table mainTable;
 
     public TitleScreen(AssetManager assetManager) {
         this.assetManager = assetManager;
+
+        // Ensure assets are fully loaded
+        assetManager.finishLoading();
+
         skin = assetManager.get(Assets.SKIN);
+        viewport = new ExtendViewport(16, 9); // Initialize the viewport here
     }
 
     @Override
     public void show() {
-
-        ExtendViewport viewport = new ExtendViewport(16, 9);
-        stage = new Stage(viewport); 
+        stage = new Stage(viewport);
 
         // Load the background image
         Texture backgroundTexture = new Texture(Gdx.files.internal("title.jpeg"));
@@ -47,30 +49,55 @@ class TitleScreen extends ScreenAdapter {
         mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.center(); // Center the buttons
+        mainTable.setDebug(true); // Debugging for button layout
 
-        // Add buttons to the table
-        mainTable.add(addButton("Play")).fillX().padBottom(10);
+        // Add buttons to the table with listeners
+        mainTable.add(addButton("Play", () -> {
+            Gdx.app.log("Button", "Play button pressed");
+        }, 200, 50)).padBottom(10);
+        
         mainTable.row();
-        mainTable.add(addButton("Decks")).fillX().padBottom(10);
+        mainTable.add(addButton("Decks", () -> {
+            Gdx.app.log("Button", "Decks button pressed");
+        }, 200, 50)).padBottom(10);
+
         mainTable.row();
-        mainTable.add(addButton("Options")).fillX().padBottom(10);
+        mainTable.add(addButton("Options", () -> {
+            Gdx.app.log("Button", "Options button pressed");
+        }, 200, 50)).padBottom(10);
+
         mainTable.row();
-        mainTable.add(addButton("Exit")).fillX().padBottom(10);
+        mainTable.add(addButton("Exit", () -> {
+            Gdx.app.exit();
+        }, 200, 50)).padBottom(10);
 
         // Add the main table to the stage (after the background)
         stage.addActor(mainTable);
 
-        // Set input processor
+        // Set input processor and log to confirm
         Gdx.input.setInputProcessor(stage);
-        System.out.println("Viewport Width: " + viewport.getWorldWidth());
-        System.out.println("Viewport Height: " + viewport.getWorldHeight());
+        Gdx.app.log("Input", "Input processor set to stage");
 
+        // Confirm the skin is loaded
+        if (skin != null) {
+            Gdx.app.log("TitleScreen", "Skin loaded successfully.");
+        } else {
+            Gdx.app.log("TitleScreen", "Failed to load skin.");
+        }
     }
 
-    // Method to create buttons
-    private TextButton addButton(String name) {
-       return new TextButton(name, skin);
-    
+    // Method to create buttons with a click listener and size control
+    private TextButton addButton(String name, Runnable action, float width, float height) {
+        TextButton button = new TextButton(name, skin);
+        button.setSize(width, height); // Set a fixed size for the button
+        button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Button", name + " clicked"); // Debug log for click detection
+                action.run(); // Execute the provided action when the button is clicked
+            }
+        });
+        return button;
     }
 
     @Override
@@ -84,8 +111,14 @@ class TitleScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-        Viewport viewport;
-        viewport.update(width, height);
+        viewport.update(width, height, true); // Update the viewport dimensions
         backgroundImage.setSize(viewport.getWorldWidth(), viewport.getWorldHeight()); // Ensure background fits viewport
     }
+
+    @Override
+    public void dispose() {
+        stage.dispose(); // Dispose of the stage to prevent memory leaks
+    }
 }
+
+
