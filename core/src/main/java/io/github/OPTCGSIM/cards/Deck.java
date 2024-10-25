@@ -8,7 +8,6 @@ public class Deck {
     private LeaderCard leader;
     private ArrayList<Card> deck;
 
-
     public Deck(){
         this.leader = null;
         this.deck = new ArrayList<>();

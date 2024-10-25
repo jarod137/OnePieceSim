@@ -119,6 +119,7 @@ public class DeckBuilder extends ScreenAdapter {
     //
     private void checkCardReqs(Card card){
 
+        //Checks if the selected card is of type leader or not
         if (card.getCardType().equalsIgnoreCase("LEADER")){
             if (deck.hasLeader()){
                 System.out.println("Error: Already has a leader");
@@ -129,7 +130,9 @@ public class DeckBuilder extends ScreenAdapter {
         } else {
             if (!deck.hasLeader()){
                 System.out.println("Error: no leader picked yet");
-            } else if (deck.rightColor(card)){
+            }
+
+            if (deck.rightColor(card)){
                 deck.addToHand(card);
             } else {
                 System.out.println("Error: Wrong color selected (does not match leader card color)");

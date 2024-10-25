@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -19,11 +20,18 @@ public class CardParse {
 
     //TODO: Should probably move the assigment of images over here, rather than in DeckBuilder.java
     public ArrayList<Card> parseJSON() {
+        System.out.println("Working directory: " + Paths.get("").toAbsolutePath());
+
         ArrayList<Card> cards = new ArrayList<>();
         Texture cardTexture = null;
 
         try {
-            String content = new String(Files.readAllBytes(Paths.get("WebScraper/data.json")));
+            //testing fix
+            Path currentDir = Paths.get("").toAbsolutePath();
+            Path dataJsonPath = currentDir.resolve("../WebScraper/data.json");
+            String content = new String(Files.readAllBytes(dataJsonPath));
+
+//            String content = new String(Files.readAllBytes(Paths.get("WebScraper/data.json")));
             JSONArray jsonArr = new JSONArray(content);
 
 

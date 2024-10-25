@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import io.github.OPTCGSIM.player.Player;
 
 public class StageCard extends Card {
-
     private int cost;
     private String effect;
     private String type;

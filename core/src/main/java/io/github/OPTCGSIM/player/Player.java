@@ -12,7 +12,6 @@ public class Player {
     private Deck deck;
     private List<CharacterCard> battlefield;
     private List<Card> lifeArea;
-
     public void playCard(int cardIndex, Game game) {
 
     }
