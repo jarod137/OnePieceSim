@@ -2,7 +2,6 @@ package io.github.OPTCGSIM.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import io.github.OPTCGSIM.Main;
 
 /** Launches the desktop (LWJGL3) application. */
