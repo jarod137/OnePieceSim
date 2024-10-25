@@ -9,8 +9,9 @@ public abstract class Card {
     protected int cardNumber;
     protected String cardType;
     protected String color;
+    protected String effect;
 
-    public Card(Texture texture, String name, int cardNumber, String cardType, String color) {
+    public Card(Texture texture, String name, int cardNumber, String cardType, String color, String effect) {
         this.texture = texture;
         this.name = name;
         this.cardNumber = cardNumber;
@@ -38,9 +39,18 @@ public abstract class Card {
         return this.color;
     }
 
+    public String getEffect() {
+        return this.effect;
+    }
+
     void dispose() {
         texture.dispose();
     }
 
     public abstract void play(Player player);
+
+
+    public void setActive(Boolean activeState) {
+        //TODO make a function to set a Character Card active
+    }
 }

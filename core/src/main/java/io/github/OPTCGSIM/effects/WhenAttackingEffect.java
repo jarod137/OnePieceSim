@@ -1,5 +1,9 @@
 package io.github.OPTCGSIM.effects;
 
-public class WhenAttackingEffect /*  implements Effect */ {
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class WhenAttackingEffect {
+    public void ActivateWhenAttacking(CharacterCard card) {
+
+    }
 }

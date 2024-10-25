@@ -1,5 +1,9 @@
 package io.github.OPTCGSIM.effects;
 
-public class DonxEffect /*  implements Effect */ {
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class DonxEffect {
+    public void ActivateDonxEffect(CharacterCard card) {
+        
+    }
 }

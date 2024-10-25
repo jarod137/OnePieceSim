@@ -1,5 +1,9 @@
 package io.github.OPTCGSIM.effects;
 
-public class BlockerEffect /*  implements Effect */{
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class BlockerEffect {
+    public void ActivateBlocker(CharacterCard card){
+
+    }
 }

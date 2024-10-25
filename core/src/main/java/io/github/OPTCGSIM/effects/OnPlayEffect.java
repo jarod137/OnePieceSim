@@ -1,5 +1,11 @@
 package io.github.OPTCGSIM.effects;
 
-public class OnPlayEffect /*  implements Effect */ {
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class OnPlayEffect {
+    public void ActivateOnPlayEffect(CharacterCard card) {
+        
+    }
 }
+
+

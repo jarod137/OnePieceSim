@@ -1,5 +1,10 @@
 package io.github.OPTCGSIM.effects;
 
-public class DonMinusEffect /*  implements Effect */{
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class DonMinusEffect{
+    public void ActivateDonMinusEffect(CharacterCard card) {
+
+    }
     
 }
