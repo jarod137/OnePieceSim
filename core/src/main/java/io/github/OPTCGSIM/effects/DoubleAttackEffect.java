@@ -1,5 +1,9 @@
 package io.github.OPTCGSIM.effects;
 
-public class DoubleAttackEffect /*  implements Effect */ {
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class DoubleAttackEffect {
+    public void ActivateDoubleAttack(CharacterCard card) {
+        
+    }
 }

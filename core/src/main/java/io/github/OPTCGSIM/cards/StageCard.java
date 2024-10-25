@@ -11,10 +11,9 @@ public class StageCard extends Card {
     private String set;
 
     public StageCard(Texture texture, String name, int cardNumber, String cardType, String color, int cost, String type, String effect, String set) {
-        super(texture, name, cardNumber, cardType, color);
+        super(texture, name, cardNumber, cardType, color, effect);
         this.cost = cost;
         this.type = type;
-        this.effect = effect;
         this.set = set;
     }
 

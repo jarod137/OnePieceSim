@@ -1,5 +1,9 @@
 package io.github.OPTCGSIM.effects;
 
-public class EndOfYourTurnEffect /*  implements Effect */ {
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class EndOfYourTurnEffect {
+    public void ActivateEOTEffect(CharacterCard card){
+        
+    }
 }

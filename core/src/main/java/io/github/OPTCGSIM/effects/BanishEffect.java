@@ -1,6 +1,9 @@
 package io.github.OPTCGSIM.effects;
 
-public class BanishEffect /*  implements Effect */ {
-    
-    
+import io.github.OPTCGSIM.cards.CharacterCard;
+
+public class BanishEffect {
+    public void ActivateBanish(CharacterCard card) {
+
+    }
 }
